@@ -1,37 +1,49 @@
 import logging
-from telegram.ext import Application, MessageHandler, filters, CommandHandler
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.ext import Application, MessageHandler, filters, CommandHandler, ConversationHandler, ContextTypes, CallbackQueryHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from config import BOT_TOKEN
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
-)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 
-reply_keyboard = [['Русский язык', 'Математика профиль'],]
-markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [
+            InlineKeyboardButton("Русский язык", callback_data="rus"),
+            InlineKeyboardButton("Математика профиль", callback_data="math")
+        ]
+    ]
 
-async def start(update, context):
-    await update.message.reply_text(
-        "Выберите нужный вам предмет",
-        reply_markup=markup
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    await update.message.reply_text("Выберите предмет:", reply_markup=reply_markup)
+
+async def math(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    await query.edit_message_text(
+        "math"
     )
 
-async def start(update, context):
-    text = update.message.text
-    if text == "Русский язык":
-        await update.message.reply_text(
-            "Выберите нужный вам предмет",
-            reply_markup=markup
-        )
+
+async def rus(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    await query.edit_message_text(
+        "rus"
+    )
 
 
 def main():
     application = Application.builder().token(BOT_TOKEN).build()
+
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(MessageHandler(filters.TEXT, start))
+    application.add_handler(CallbackQueryHandler(rus, pattern="rus"))
+    application.add_handler(CallbackQueryHandler(math, pattern="math"))
 
     application.run_polling()
 if __name__ == '__main__':
