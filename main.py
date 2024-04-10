@@ -18,6 +18,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text("Выберите предмет:", reply_markup=reply_markup)
 
+async def back_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+
+    await query.answer()
+    await start(query, context)
+
+
 async def math(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("№1", callback_data="1"), InlineKeyboardButton("№2", callback_data="2")],
@@ -67,6 +74,7 @@ def main():
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.Regex("Русский яызк"), rus))
     application.add_handler(MessageHandler(filters.Regex("Математика профиль"), math))
+    application.add_handler(CallbackQueryHandler(back_start, pattern="back"))
 
 
     application.run_polling()
