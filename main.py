@@ -30,7 +30,7 @@ async def math(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("№3", callback_data="math_3"), InlineKeyboardButton("№4", callback_data="math_4")],
         [InlineKeyboardButton("№5", callback_data="math_5"), InlineKeyboardButton("№6", callback_data="math_6")],
         [InlineKeyboardButton("№7", callback_data="math_7"), InlineKeyboardButton("№8", callback_data="math_8")],
-        [InlineKeyboardButton("№10", callback_data="math_10")]
+        [InlineKeyboardButton("№10", callback_data="math_10")],
         [InlineKeyboardButton("№11", callback_data="math_11"), InlineKeyboardButton("№12", callback_data="math_12")],
         [InlineKeyboardButton("№13", callback_data="math_13"), InlineKeyboardButton("№14", callback_data="math_14")],
         [InlineKeyboardButton("№15", callback_data="math_15"), InlineKeyboardButton("№16", callback_data="math_16")],
@@ -143,7 +143,71 @@ async def send_sh(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
         await query.edit_message_text("Нажмите чтобы вернуться",
                                       reply_markup=reply_markup)
-
+    elif query.data == "math_1" or query.data == "math_17":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_1-17 (1).png", "rb"), caption="номер 1, 17"), InputMediaPhoto(media=open("math_img/sh_1-17 (2).png", "rb"), caption="номер 1, 17"),
+                       InputMediaPhoto(media=open("math_img/sh_1-17 (3).png", "rb"), caption="номер 1, 17")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_2":
+        await context.bot.send_photo(context._chat_id, open("math_img/sh_2.png", "rb"), "номер 2")
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_3":
+        await context.bot.send_photo(context._chat_id, open("math_img/sh_3.png", "rb"), "номер 3")
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_4" or query.data == "math_5":
+        await context.bot.send_photo(context._chat_id, open("math_img/sh_4-5.jpg", "rb"), "номер 4, 5")
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_6" or query.data == "math_7":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_6-7 (1).png", "rb"), caption="номер 6, 7"), InputMediaPhoto(media=open("math_img/sh_6-7 (2).png", "rb"), caption="номер 6, 7")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_8" or query.data == "math_12":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_8-12 (1).png", "rb"), caption="номер 8, 12"), InputMediaPhoto(media=open("math_img/sh_8-12 (2).png", "rb"), caption="номер 8, 12")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_10":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_10 (1).png", "rb"), caption="номер 8, 12"), InputMediaPhoto(media=open("math_img/sh_10 (2).png", "rb"), caption="номер 10")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_11":
+        await context.bot.send_photo(context._chat_id, open("math_img/sh_11.png", "rb"), "номер 11")
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_13":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_13 (1).png", "rb"), caption="номер 13"), InputMediaPhoto(media=open("math_img/sh_13 (2).png", "rb"), caption="номер 13")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_14":
+        await context.bot.send_document(context._chat_id, open('math_img/sh_14.pdf', 'rb'), "номер 14")
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_15":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_15 (1).png", "rb"), caption="номер 15"), InputMediaPhoto(media=open("math_img/sh_15 (2).png", "rb"), caption="номер 15")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_16":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_16 (1).png", "rb"), caption="номер 16"), InputMediaPhoto(media=open("math_img/sh_16 (2).png", "rb"), caption="номер 16")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_18":
+        media_group = [InputMediaPhoto(media=open("math_img/sh_18 (1).png", "rb"), caption="номер 18"), InputMediaPhoto(media=open("math_img/sh_18 (2).png", "rb"), caption="номер 18")]
+        await context.bot.send_media_group(chat_id=context._chat_id, media=media_group)
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
+    elif query.data == "math_19":
+        await context.bot.send_photo(context._chat_id, open("math_img/sh_19.png", "rb"), "номер 19")
+        await query.edit_message_text("Нажмите чтобы вернуться",
+                                      reply_markup=reply_markup)
 
 
 def main():
