@@ -3,13 +3,15 @@ from telegram.ext import Application, MessageHandler, filters, CommandHandler, C
 from telegram import ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup, Update, InputMediaPhoto
 from config import BOT_TOKEN
 
+#логгирование
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 
 
-
+#меню
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    #реализация клавиатуры
     keyboard = [
         ["Русский яызк"],["Математика профиль"]
     ]
@@ -18,13 +20,18 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text("Выберите предмет:", reply_markup=reply_markup)
 
+#кнопка назад
 async def back_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    #реализация перехода назад в меню
     query = update.callback_query
 
     await query.answer()
     await context.bot.delete_message(context._chat_id, query.message.message_id)
     await start(query, context)
+
+#меню математики
 async def math(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    #кнопки
     keyboard = [
         [InlineKeyboardButton("№1", callback_data="math_1"), InlineKeyboardButton("№2", callback_data="math_2")],
         [InlineKeyboardButton("№3", callback_data="math_3"), InlineKeyboardButton("№4", callback_data="math_4")],
@@ -43,8 +50,9 @@ async def math(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Выберите номер:", reply_markup=markup
     )
 
-
+#меню русского
 async def rus(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    #кнопки
     keyboard = [
         [InlineKeyboardButton("№1", callback_data="rus_1")],
         [InlineKeyboardButton("№3", callback_data="rus_3"), InlineKeyboardButton("№4", callback_data="rus_4")],
@@ -65,6 +73,7 @@ async def rus(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Выберите номер:", reply_markup=markup
     )
 
+#реализация отправки шпаргалок
 async def send_sh(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
 
@@ -209,7 +218,7 @@ async def send_sh(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text("Нажмите чтобы вернуться",
                                       reply_markup=reply_markup)
 
-
+#main, добавление хендлеров, билд
 def main():
     application = Application.builder().token(BOT_TOKEN).build()
 
